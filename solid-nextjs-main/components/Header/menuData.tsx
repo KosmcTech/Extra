@@ -20,14 +20,8 @@ const menuData: Menu[] = [
     path: "/blog",
   },
   {
-    id: 2.3,
-    title: "Docs",
-    newTab: false,
-    path: "/docs",
-  },
-  {
     id: 3,
-    title: "Pages",
+    title: "Case Study",
     newTab: false,
     submenu: [
       {
@@ -67,14 +61,7 @@ const menuData: Menu[] = [
         path: "/error",
       },
     ],
-  },
-
-  {
-    id: 4,
-    title: "Support",
-    newTab: false,
-    path: "/support",
-  },
+  }
 ];
 
 export default menuData;
