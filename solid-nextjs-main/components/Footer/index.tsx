@@ -9,7 +9,7 @@ const Footer = () => {
         <div className="mx-auto max-w-c-1390 px-4 md:px-8 2xl:px-0">
           {/* <!-- Footer Top --> */}
           <div className="py-20 lg:py-25">
-            <div className="flex flex-wrap gap-8 lg:justify-center lg:gap-0">
+            <div className="flex flex-wrap gap-8 lg:justify-around lg:gap-0">
               <motion.div
                 variants={{
                   hidden: {
