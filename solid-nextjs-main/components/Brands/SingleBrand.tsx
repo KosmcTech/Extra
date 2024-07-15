@@ -8,7 +8,7 @@ const SingleBrand = ({ brand }: { brand: Brand }) => {
 
   return (
     <>
-      <motion.a
+      <motion.div
         variants={{
           hidden: {
             opacity: 0,
@@ -24,22 +24,21 @@ const SingleBrand = ({ brand }: { brand: Brand }) => {
         whileInView="visible"
         transition={{ duration: 1, delay: id }}
         viewport={{ once: true }}
-        href={href}
-        className="animate_top mx-w-full relative block h-10 w-[98px]"
+        className="animate_top mx-w-full relative block h-16 w-[128px]"
       >
         <Image
-          className="opacity-65 transition-all duration-300 hover:opacity-100 dark:hidden"
+          className="opacity-65 transition-all duration-300 hover:opacity-100 dark:hidden mix-blend-luminosity"
           src={image}
           alt={name}
           fill
         />
         <Image
-          className="hidden opacity-50 transition-all duration-300 hover:opacity-100 dark:block"
+          className="hidden opacity-50 transition-all duration-300 hover:opacity-100 dark:block mix-blend-luminosity"
           src={imageLight}
           alt={name}
           fill
         />
-      </motion.a>
+      </motion.div>
     </>
   );
 };

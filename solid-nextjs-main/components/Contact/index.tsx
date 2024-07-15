@@ -34,7 +34,7 @@ const Contact = () => {
     if(!('consent' in dataObj)) {
       alert('Consent is not provided')
     }else {
-      window.open(`mailto:anshumanprsd@gmail.com?subject=${dataObj.subject}&body=${templateBody(dataObj.email, dataObj.full_name, dataObj.phone_number, dataObj.message)}`)
+      window.open(`mailto:connect@kosmc.live?subject=${dataObj.subject}&body=${templateBody(dataObj.email, dataObj.full_name, dataObj.phone_number, dataObj.message)}`)
     }
   }
   return (

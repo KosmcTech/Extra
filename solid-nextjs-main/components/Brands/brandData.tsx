@@ -32,7 +32,7 @@ const brandData: Brand[] = [
   {
     id: 0.6,
     name: "Client",
-    href: "#",
+    href: "/",
     image: "/images/brand/brand-light-05.svg",
     imageLight: "/images/brand/brand-dark-05.svg",
   },
