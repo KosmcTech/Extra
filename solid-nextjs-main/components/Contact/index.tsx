@@ -3,6 +3,17 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import React from "react";
 
+const templateBody = (email: string, fullName: string, phoneNumber:string, message: string) => {
+  return `
+  Hi,
+  ${message}
+  
+  Regards \n
+  ${fullName || 'No Name'}
+  ${email || 'No Email'}
+  ${phoneNumber || 'No Number'}
+  `
+}
 const Contact = () => {
   /**
    * Source: https://www.joshwcomeau.com/react/the-perils-of-rehydration/
@@ -16,6 +27,16 @@ const Contact = () => {
     return null;
   }
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const data = new FormData(e.target as any);
+    const dataObj = Object.fromEntries(data.entries()) as any
+    if(!('consent' in dataObj)) {
+      alert('Consent is not provided')
+    }else {
+      window.open(`mailto:anshumanprsd@gmail.com?subject=${dataObj.subject}&body=${templateBody(dataObj.email, dataObj.full_name, dataObj.phone_number, dataObj.message)}`)
+    }
+  }
   return (
     <>
       {/* <!-- ===== Contact Start ===== --> */}
@@ -37,7 +58,7 @@ const Contact = () => {
             />
           </div>
 
-          <div className="flex flex-col-reverse flex-wrap gap-8 md:flex-row md:flex-nowrap md:justify-between xl:gap-20">
+          <div className="flex flex-col-reverse flex-wrap gap-8 md:flex-row md:flex-nowrap md:justify-center xl:gap-20">
             <motion.div
               variants={{
                 hidden: {
@@ -61,18 +82,19 @@ const Contact = () => {
               </h2>
 
               <form
-                action="https://formbold.com/s/unique_form_id"
-                method="POST"
+                onSubmit={handleSubmit}
               >
                 <div className="mb-7.5 flex flex-col gap-7.5 lg:flex-row lg:justify-between lg:gap-14">
                   <input
                     type="text"
+                    name="full_name"
                     placeholder="Full name"
                     className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white lg:w-1/2"
                   />
 
                   <input
                     type="email"
+                    name="email"
                     placeholder="Email address"
                     className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white lg:w-1/2"
                   />
@@ -81,12 +103,14 @@ const Contact = () => {
                 <div className="mb-12.5 flex flex-col gap-7.5 lg:flex-row lg:justify-between lg:gap-14">
                   <input
                     type="text"
+                    name="subject"
                     placeholder="Subject"
                     className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white lg:w-1/2"
                   />
 
                   <input
                     type="text"
+                    name="phone_number"
                     placeholder="Phone number"
                     className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white lg:w-1/2"
                   />
@@ -94,6 +118,7 @@ const Contact = () => {
 
                 <div className="mb-11.5 flex">
                   <textarea
+                    name="message"
                     placeholder="Message"
                     rows={4}
                     className="w-full border-b border-stroke bg-transparent focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white"
@@ -104,6 +129,7 @@ const Contact = () => {
                   <div className="mb-4 flex md:mb-0">
                     <input
                       id="default-checkbox"
+                      name="consent"
                       type="checkbox"
                       className="peer sr-only"
                     />
@@ -154,52 +180,6 @@ const Contact = () => {
                   </button>
                 </div>
               </form>
-            </motion.div>
-
-            <motion.div
-              variants={{
-                hidden: {
-                  opacity: 0,
-                  y: -20,
-                },
-
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                },
-              }}
-              initial="hidden"
-              whileInView="visible"
-              transition={{ duration: 2, delay: 0.1 }}
-              viewport={{ once: true }}
-              className="animate_top w-full md:w-2/5 md:p-7.5 lg:w-[26%] xl:pt-15"
-            >
-              <h2 className="mb-12.5 text-3xl font-semibold text-black dark:text-white xl:text-sectiontitle2">
-                Find us
-              </h2>
-
-              <div className="5 mb-7">
-                <h3 className="mb-4 text-metatitle3 font-medium text-black dark:text-white">
-                  Our Loaction
-                </h3>
-                <p>290 Maryam Springs 260, Courbevoie, Paris, France</p>
-              </div>
-              <div className="5 mb-7">
-                <h3 className="mb-4 text-metatitle3 font-medium text-black dark:text-white">
-                  Email Address
-                </h3>
-                <p>
-                  <a href="#">yourmail@domainname.com</a>
-                </p>
-              </div>
-              <div>
-                <h4 className="mb-4 text-metatitle3 font-medium text-black dark:text-white">
-                  Phone Number
-                </h4>
-                <p>
-                  <a href="#">+009 42334 6343 843</a>
-                </p>
-              </div>
             </motion.div>
           </div>
         </div>
